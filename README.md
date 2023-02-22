@@ -21,3 +21,4 @@ This is a simple website that will enable a user to create check lists for any o
 - I've learned that during deploy, Caddy will sometimes have a file-lock on the file you are over-writing. To work around this, I added commands to my deploy script that will stop the Caddy service before the deploy, and restart it after.
 - I've never used SVG before, so to get the 4 quarter-circles for the Simon game looking good took quite some time and effort.
 - Vertically aligning elements in CSS is much harder than it probably needs to be, but using some `transform: translate` magic , it is possible.
+- While bootstrap makes it really easy to quickly customize a website and make it beautiful, there are only so many pre-determined things you can do to a website. Therefore a boostrap website looks very much like... well a bootstrap website.
