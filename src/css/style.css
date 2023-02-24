@@ -29,9 +29,10 @@ h1 {
     position: absolute;
     top: 50%;
     left: 50%;
+    /* width: 80vw; */
+    min-width: 460px;
     transform: translate(-50%, -50%);
 }
-
 
 
 .topnav {
@@ -60,4 +61,8 @@ h1 {
 
 .right-nav {
     float: right;
+}
+
+.dot {
+    outline: dashed 1px black;
 }

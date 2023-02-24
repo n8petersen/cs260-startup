@@ -30,14 +30,27 @@
         </nav>
     </header>
   
-    <div class="left-pad">
-        <h1> Lists </h1>
-        <ul>
-            <li>
-                <a href="./list.html">To-Do List</a>
-            </li>
-        </ul>
-    </div>
+    <main>
+        <div class="left-pad center-container">
+            <h1> Lists </h1>
+            <div class="center-child">
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <a href="./list.html">To-Do List</a>
+                    </li>
+                </ul>
+                <br>
+                <form>
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="List Name" aria-label="List Name" aria-describedby="basic-addon2">
+                        <div class="input-group-append">
+                            <button class="btn btn-success" type="button">Create List</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
 </body>
 
 </html>
