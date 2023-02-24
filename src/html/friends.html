@@ -5,68 +5,70 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Checkerly</title>
+  <title>Taskerly</title>
   <link rel="stylesheet" href="../css/style.css">
   <link rel="icon" href="./src/favicon.ico">
 
   <!-- Include bootstrap CSS framework -->
-  <link
-    href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
-    rel="stylesheet"
-    integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
-    crossorigin="anonymous"
-  />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous" />
 </head>
 
 <body>
   <header>
     <nav class="topnav">
-        <a href="../../">Home</a>
-         <a href="./lists.html">Lists</a>
-        <div class="right-nav">
-            <a class="active" href="./friends.html">Friends</a>
-            <a href="./login.html">Login</a>
-        </div>
+      <a href="../../">Home</a>
+      <a href="./lists.html">Lists</a>
+      <div class="right-nav">
+        <a class="active" href="./friends.html">Friends</a>
+        <a href="./login.html">Login</a>
+      </div>
     </nav>
-</header>
-<div class="left-pad">
-  
-  <h1> Friends </h1>
-  <div>
-      <ul>
+  </header>
+
+  <div class="left-pad center-container">
+    <div class="center-child w-75">
+      <h1> Friends </h1>
+      <div>
+        <ul>
           <li>
             <span>xX_bladekiller_Xx</span>
             <button class="btn btn-danger btn-sm">Remove</button>
           </li>
-      
+
           <li>
             <span>ItsAMeMario</span>
             <button class="btn btn-danger btn-sm">Remove</button>
           </li>
         </ul>
-      <form>
-          <input type='text' name='username' placeholder="Username" required/>
-          <button class="btn btn-success btn-sm">Add Friend</button><br>
-      </form>
-  </div>
+        <form class="input-group mb-3 w-50">
+          <input type="text" class="form-control" placeholder="Username" aria-label="Username"
+            aria-describedby="button-addon2">
+          <button class="btn btn-success" type="button" id="button-addon2">Add Friend</button>
+        </form>
+      </div>
 
-  <h1> Friend Requests </h1>
-  <div>
-    <ul>
-      <li>
-        <span>johncena42</span>
-        <button class="btn btn-success btn-sm">Accept</button>
-        <button class="btn btn-danger btn-sm">Reject</button>
-      </li>
-  
-      <li>
-        <span>TotallyNotYourHelicopterParents</span>
-        <button class="btn btn-success btn-sm">Accept</button>
-        <button class="btn btn-danger btn-sm">Reject</button>
-      </li>
-    </ul>
+      <br><br><br><br><br><br>
+
+      <h1> Friend Requests </h1>
+      <div>
+        <ul>
+          <li>
+            <span>johncena42</span>
+            <button class="btn btn-success btn-sm">Accept</button>
+            <button class="btn btn-danger btn-sm">Reject</button>
+          </li>
+
+          <li>
+            <span>TotallyNotYourHelicopterParents</span>
+            <button class="btn btn-success btn-sm">Accept</button>
+            <button class="btn btn-danger btn-sm">Reject</button>
+          </li>
+        </ul>
+      </div>
+    </div>
   </div>
-</div>
 
 </body>
+
 </html>
