@@ -1,9 +1,15 @@
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+
 :root {
     --theme-color: #04AA6D;
 }
 
+html {
+    position: relative;
+    min-height: 100%;
+}
+
 body {
-    margin: 0;
     font-family: Arial, Helvetica, sans-serif;
     display: flex;
     flex-direction: column;
@@ -18,7 +24,7 @@ h1 {
 }
 
 .center-container {
-    margin: 25px;
+    margin: 15px;
     width: 100% - 10px;
     height: 90vh;
     position: relative;
@@ -28,7 +34,7 @@ h1 {
     position: absolute;
     top: 50%;
     left: 50%;
-    /* width: 80vw; */
+    width: 80vw;
     min-width: 460px;
     transform: translate(-50%, -50%);
 }
@@ -65,11 +71,17 @@ h1 {
 footer {
     overflow: hidden;
     position: absolute;
+    margin-bottom: 0;
     bottom: 0;
     width: 100%;
     background-color: #333;
     color: #f2f2f2;
     margin: 0;
+    height: 60px;
+}
+
+footer div {
+    transform: translateY(75%);
 }
 
 footer a {
@@ -78,4 +90,66 @@ footer a {
 
 .dot {
     outline: dashed 1px black;
+}
+
+.material-icon {
+	border: none; /* No border */
+	background: none; /* Match the background of the parent */
+	font-family: 'Material Icons'; /* Use the icon font */
+	font-size: inherit; /* Input doesn't automatically inherit font size. This brings it in. */
+	cursor: pointer; /* Change the cursor to a pointer when hovering on this element */
+}
+
+.task-delete {
+	display: inline-block;
+	box-sizing: border-box;
+	color: red;
+	/* Add property to change delete icon color */
+}
+.visually-hidden { 
+    border: 0;
+    padding: 0;
+    margin: 0;
+    position: absolute !important;
+    height: 1px; 
+    width: 1px;
+    overflow: hidden;
+    clip: rect(1px 1px 1px 1px); /* IE6, IE7 - a 0 height clip, off to the bottom right of the visible 1px box */
+    clip: rect(1px, 1px, 1px, 1px); /*maybe deprecated but we need to support legacy browsers */
+    clip-path: inset(50%); /*modern browsers, clip-path works inwards from each corner*/
+    white-space: nowrap; /* added line to stop words getting smushed together (as they go onto seperate lines and some screen readers do not understand line feeds as a space */
+}
+
+#add-task {
+    padding-bottom: 50px;
+}
+
+.task {
+	display: block;
+	width: 100%;
+}
+
+.task-description {
+	display: inline-block;
+	width: calc(100% - 12em);
+	box-sizing: border-box;
+}
+
+.task-date {
+	display: inline-block;
+	width: 6em;
+}
+
+.task-delete {
+	display: inline-block;
+	box-sizing: border-box;
+	color: red;
+    transform: translateY(10%);
+}
+
+.checked {
+	text-decoration: line-through;
+}
+input.task-description {
+	width: 100%;
 }
