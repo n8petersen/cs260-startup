@@ -97,9 +97,10 @@
     </form> -->
 
     <form onsubmit="createTask(event)" class="row p-lg-5 g-2 w-75 position-absolute bottom-0 start-50 translate-middle" id="add-task">
-      <input type="text" class="form-control" placeholder="Task" name="description" id="form-text">
-      <input type='date' class="form-control" name="date" id="form-date" required />
-      <button type="submit" class="btn btn-success">Add Task</button>
+      
+      <div class="col"> <input type="text" class="form-control" placeholder="Task" name="description" id="form-text"> </div>
+      <div class="col-auto"> <input type='date' class="form-control" name="date" id="form-date" required /> </div>
+      <div class="col-auto"> <button type="submit" class="btn btn-success">Add Task</button> </div>
     </form>
 
     

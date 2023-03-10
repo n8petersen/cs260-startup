@@ -143,7 +143,7 @@ document.getElementById("sort").addEventListener("click", sortByDate);
 var sortedDate = false; // Initialize sorted state to false
 
 function compareDates(a, b) {
-    // Helper function for the SortByDate function
+    // Helper function for the sortByDate function
     if (a.date > b.date) {
         return 1;
     }
