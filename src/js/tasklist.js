@@ -93,12 +93,6 @@ function createTask(event) {
 
     this.updateStorage(tasks); // Save it to local storage
     this.readTasks(); // Update DOM
-    if (sortedDate) {
-        sortByDate();
-    }
-    if (filteredComplete) {
-        filterByComplete();
-    }
 
     event.preventDefault(); // Don't refresh page
 }
@@ -160,9 +154,9 @@ function compareDates(a, b) {
 }
 
 function sortByDate() {
-    let tempTasks = tasks;
-    // console.log("Sort: ", tempTasks.sort(compareDates)); // Sorts by date
-    tempTasks.sort(compareDates); // Sorts by date
+    let sortedTasks = tasks;
+    // console.log("Sort: ", sortedTasks.sort(compareDates)); // Sorts by date
+    sortedTasks.sort(compareDates); // Sorts by date
 
     if (sortedDate == true) {
         readTasks(); // Update DOM
@@ -172,8 +166,8 @@ function sortByDate() {
         let list = document.getElementById('tasklist');
         list.innerHTML = '';
 
-        for (let i = 0; i < tempTasks.length; i++) { // Go through array
-            list.innerHTML += tempTasks[i].toHTML(); // Add task to HTML / DOM
+        for (let i = 0; i < sortedTasks.length; i++) { // Go through array
+            list.innerHTML += sortedTasks[i].toHTML(); // Add task to HTML / DOM
         }
         sortedDate = true; // Toggles sorted state to true
         // console.log("Reading sorted data to DOM")    
@@ -196,7 +190,7 @@ function checkDone(task) {
 }
 
 function filterByComplete() {
-    let tempTasks = tasks.filter(checkDone);
+    let filteredTasks = tasks.filter(checkDone);
     if (filteredComplete == true) {
         // console.log("Bringing back completed tasks.");
         readTasks(); // Update DOM
@@ -211,8 +205,8 @@ function filterByComplete() {
         // console.log("Filtering out completed tasks.");
         let list = document.getElementById('tasklist');
         list.innerHTML = ''; 
-        for (let i = 0; i < tempTasks.length; i++) {
-            list.innerHTML+= tempTasks[i].toHTML();   
+        for (let i = 0; i < filteredTasks.length; i++) {
+            list.innerHTML+= filteredTasks[i].toHTML();   
         }
         filteredComplete = true; // sets the filtered status to true
         // console.log("Reading filtered data to DOM")   
@@ -227,6 +221,8 @@ function cleanInput(string) { // Sanitizes input to make prevent XSS Attack
     };
     const reg = /[<>]/ig; // use RegEx for the angled brackets 
     return string.replace(reg, (match)=>(map[match])); // replace the angle brackets with their mapped equivalent 
+
+    // return string; // Comment rest of block and uncomment this to remove XSS defense.
 }
 
 
@@ -245,23 +241,11 @@ function saveFormDate() {
     //console.log('Saving Date: ' + localStorage.getItem('savedFormDate'))
 }
 
-
-/* This was my attempt at saving the current form data into a json, but it was too complicated for the time so I put it to the side for now
-document.getElementById("form-date").addEventListener("input", saveInputForm); // Listens for input in either form
-document.getElementById("form-text").addEventListener("input", saveInputForm); // Listens for input in either form
-function saveInputForm() {
-    let jsonString = document.getElementById('form-text').value;
-    let jsonDate = document.getElementById('form-date').value;
-    console.log(jsonString)
-    console.log(jsonDate)
-}
-*/
-
-
-
 function clearTasks() {
     let length = tasks.length;
     for (let i = 0; i < length; i++) {
         deleteTask(tasks[0].id);
     }
 }
+
+
