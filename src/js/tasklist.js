@@ -9,7 +9,7 @@ class Task {
         if (this.done == 'false') {
             return `
             <li class="task">
-                <input type="checkbox" id="${ this.id }" class="form-check-input">
+                <input type="checkbox" id="${ this.id }" class="form-check-input" onclick="updateTask('${ this.id }')">
                 <label for="${ this.id }" class="task-description">${ this.text }</label>
                 <label for="${ this.id }" class="task-date">${ this.prettyDate() }</label>
                 <button class="material-icon task-delete">delete</button>
@@ -20,7 +20,7 @@ class Task {
         else {
             return `
             <li class="task">
-                <input type="checkbox" id="${ this.id }" class="form-check-input" checked>
+                <input type="checkbox" id="${ this.id }" class="form-check-input" checked onclick="updateTask('${ this.id }')">
                 <label for="${ this.id }" class="task-description checked">${ this.text }</label>
                 <label for="${ this.id }" class="task-date">${ this.prettyDate() }</label>
                 <button class="material-icon task-delete">delete</button>
@@ -122,6 +122,7 @@ function updateTask(id) {
     }
     this.updateStorage(tasks); // Update storage
     this.readTasks(); // Update DOM
+    console.log("Updating task: " + id)
 }
 
 
