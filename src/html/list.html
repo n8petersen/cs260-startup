@@ -50,8 +50,8 @@
         <ul class="tasklist" id="tasklist">
 
           <li class="task">
-            <input type="checkbox" id="bike" class="form-check-input">
-            <label for="bike" class="task-description">Buy a bike</label>
+            <input type="checkbox" id="bike" class="form-check-input" checked>
+            <label for="bike" class="task-description checked">Buy a bike</label>
             <label for="bike" class="task-date">09-05-2022</label>
             <button class="material-icon task-delete">delete</button>
           </li>
@@ -72,21 +72,40 @@
 
         </ul>
 
+
       </div>
     </div>
 
-    <div class="row p-lg-5 g-2 w-75 position-absolute bottom-0 start-50 translate-middle" id="add-task">
+    <!-- <div class="row p-lg-5 g-2 w-75 position-absolute bottom-0 start-50 translate-middle" id="add-task">
       <div class="col">
-        <input type="text" class="form-control" placeholder="Task" aria-label="Task">
+        <input type="text" class="form-control" placeholder="Task" aria-label="Task" id="form-text">
       </div>
       <div class="col-auto">
-        <input type='date' class="form-control" name='date' id="add-date" required />
-        <label for="add-date" class="visually-hidden">yes</label>
+        <input type='date' class="form-control" name='date' id="form-date" required />
+        <label for="form-date" class="visually-hidden">yes</label>
       </div>
       <div class="col-auto">
         <button class="btn btn-success">Add Task</button>
       </div>
-    </div>
+    </div> -->
+    
+<!-- 
+    <form onsubmit="myFunction()" class="row p-lg-5 g-2 w-75 position-absolute bottom-0 start-50 translate-middle" id="add-task">
+        <input type="text" class="form-control" placeholder="Task" aria-label="Task" id="form-text">
+        <input type='date' class="form-control" name='date' id="form-date" required />
+        <button type="button" class="btn btn-success">Add Task</button>
+    </form> -->
+
+    <form onsubmit="createTask(event)" class="row p-lg-5 g-2 w-75 position-absolute bottom-0 start-50 translate-middle" id="add-task">
+      <input type="text" class="form-control" placeholder="Task" name="description" id="form-text">
+      <input type='date' class="form-control" name="date" id="form-date" required />
+      <button type="submit" class="btn btn-success">Add Task</button>
+    </form>
+
+    
+    
+
+
   </main>
 
   <footer class="position-absolute bottom-0 navbar-fixed-bottom">
@@ -96,6 +115,10 @@
     </div>
   </footer>
 
+  
+  <script src="../js/tasklist.js"></script>
+
+  
 </body>
 
 </html>
