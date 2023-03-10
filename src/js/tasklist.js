@@ -12,7 +12,7 @@ class Task {
                 <input type="checkbox" id="${ this.id }" class="form-check-input" onclick="updateTask('${ this.id }')">
                 <label for="${ this.id }" class="task-description">${ this.text }</label>
                 <label for="${ this.id }" class="task-date">${ this.prettyDate() }</label>
-                <button class="material-icon task-delete">delete</button>
+                <button class="material-icon task-delete"onclick="deleteTask('${ this.id }')">delete</button>
             </li>
             `
         }
@@ -23,7 +23,7 @@ class Task {
                 <input type="checkbox" id="${ this.id }" class="form-check-input" checked onclick="updateTask('${ this.id }')">
                 <label for="${ this.id }" class="task-description checked">${ this.text }</label>
                 <label for="${ this.id }" class="task-date">${ this.prettyDate() }</label>
-                <button class="material-icon task-delete">delete</button>
+                <button class="material-icon task-delete" onclick="deleteTask('${ this.id }')">delete</button>
             </li>
             `
         }
@@ -72,7 +72,7 @@ function readStorage() {
 
 
 function createTask(event) {
-    console.log("creating task");
+    // console.log("creating task");
     let formData = new FormData(event.currentTarget); // Pull in form data from DOM
     let json = JSON.stringify(Object.fromEntries(formData)); 
     json = JSON.parse(json); // Format it to JSON
@@ -93,6 +93,12 @@ function createTask(event) {
 
     this.updateStorage(tasks); // Save it to local storage
     this.readTasks(); // Update DOM
+    if (sortedDate) {
+        sortByDate();
+    }
+    if (filteredComplete) {
+        filterByComplete();
+    }
 
     event.preventDefault(); // Don't refresh page
 }
@@ -107,14 +113,14 @@ function readTasks() {
     for (let i = 0; i < tasks.length; i++) {
         list.innerHTML += tasks[i].toHTML(); 
     }
-    console.log("Reading data to DOM")
+    // console.log("Reading data to DOM")
     return;
 }
 
 
 function updateTask(id) { 
     // Toggles checkmark and 'done' state on task
-    console.log("Update id: " + id);
+    // console.log("Update id: " + id);
     for(let i = 0; i < tasks.length; i++) {
         if (tasks[i].id == id) {
             tasks[i].toggle();
@@ -122,12 +128,12 @@ function updateTask(id) {
     }
     this.updateStorage(tasks); // Update storage
     this.readTasks(); // Update DOM
-    console.log("Updating task: " + id)
+    // console.log("Updating task: " + id)
 }
 
 
 function deleteTask(id) {
-    console.log("Delete id: " + id); 
+    // console.log("Delete id: " + id); 
     for(let i = 0; i < tasks.length; i++) { // Go through array 
         if (tasks[i].id == id) { // Find task by ID
             tasks.splice(i, 1); // Remove from array
@@ -155,7 +161,8 @@ function compareDates(a, b) {
 
 function sortByDate() {
     let tempTasks = tasks;
-    console.log("Sort: ", tempTasks.sort(compareDates)); // Sorts by date
+    // console.log("Sort: ", tempTasks.sort(compareDates)); // Sorts by date
+    tempTasks.sort(compareDates); // Sorts by date
 
     if (sortedDate == true) {
         readTasks(); // Update DOM
@@ -169,7 +176,7 @@ function sortByDate() {
             list.innerHTML += tempTasks[i].toHTML(); // Add task to HTML / DOM
         }
         sortedDate = true; // Toggles sorted state to true
-        console.log("Reading sorted data to DOM")    
+        // console.log("Reading sorted data to DOM")    
     }
     if (filteredComplete == true) { // re-filters if necessary after sorting 
         filteredComplete = false; // will re-filter, so we need to set it to false so when it gets in function it will filter it.
@@ -191,7 +198,7 @@ function checkDone(task) {
 function filterByComplete() {
     let tempTasks = tasks.filter(checkDone);
     if (filteredComplete == true) {
-        console.log("Bringing back completed tasks.");
+        // console.log("Bringing back completed tasks.");
         readTasks(); // Update DOM
         filteredComplete = false; // sets the filtered status to false
 
@@ -201,14 +208,14 @@ function filterByComplete() {
         }
     }
     else {
-        console.log("Filtering out completed tasks.");
+        // console.log("Filtering out completed tasks.");
         let list = document.getElementById('tasklist');
         list.innerHTML = ''; 
         for (let i = 0; i < tempTasks.length; i++) {
             list.innerHTML+= tempTasks[i].toHTML();   
         }
         filteredComplete = true; // sets the filtered status to true
-        console.log("Reading filtered data to DOM")   
+        // console.log("Reading filtered data to DOM")   
     }
 }
 
