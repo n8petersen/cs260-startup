@@ -1,4 +1,9 @@
 # Checkerly
+
+## Hosted at [startup.n8petersen.link](https://startup.n8petersen.link).
+
+--- 
+
 ## Design
 This is a simple website that will enable a user to create check lists for any occasion, whether it be a to-do List, a shopping list, etc. Each list can be shared with other registered users on the website. The tasks can have a title, a due date/time, and a description. There will be multiple ways to sort the lists: Custom sort by dragging the tasks, Sort by Due Date/Time, Filter completed. 
 
@@ -6,6 +11,7 @@ This is a simple website that will enable a user to create check lists for any o
 <img src="./screenshot.png" width="800" alt="Mock Design">
 
 ---
+
 ### Key Features
 - Ability to export the list in several different manners
 - Secure login over HTTPS
