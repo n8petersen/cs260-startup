@@ -6,3 +6,4 @@ deployFiles.sh
 deployService.sh
 *.pem
 .env
+.hintrc
