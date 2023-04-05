@@ -1,1 +1,7 @@
+.vscode/
+.DS_Store
+node_modules/
+dist/
+deployFiles.sh
 *.pem
+.env
