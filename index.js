@@ -3,6 +3,8 @@ const bcrypt = require('bcrypt');
 const express = require('express');
 const app = express();
 const DB = require('./database.js');
+
+// use .env variables
 require('dotenv').config()
 
 const authCookieName = 'token';
@@ -52,6 +54,22 @@ apiRouter.post('/auth/login', async (req, res) => {
     res.status(401).send({ msg: 'Unauthorized' });
 });
 
+// DeleteAuth token if stored in cookie
+apiRouter.delete('/auth/logout', (_req, res) => {
+    res.clearCookie(authCookieName);
+    res.status(204).end();
+});
+
+// GetUser returns information about a user
+apiRouter.get('/user/:email', async (req, res) => {
+    const user = await DB.getUser(req.params.email);
+    if (user) {
+        const token = req?.cookies.token;
+        res.send({ email: user.email, authenticated: token === user.token });
+        return;
+    }
+    res.status(404).send({ msg: 'Unknown' });
+});
 
 // secureApiRouter verifies credentials for endpoints
 var secureApiRouter = express.Router();
@@ -69,9 +87,29 @@ secureApiRouter.use(async (req, res, next) => {
 
 
 
+// GetTasks
+apiRouter.get('/tasks', async (_req, res) => {
+    const tasks = await DB.getTasks();
+    res.send(tasks);
+});
+
+// AddTask
+apiRouter.post('/task', async (req, res) => {
+    DB.addTask(req.body);
+    const tasks = await DB.getTasks();
+    res.send(tasks);
+});
+
+
+
 // Default error handler
 app.use(function (err, req, res, next) {
     res.status(500).send({ type: err.name, message: err.message });
+});
+
+// Return the application's default page if the path is unknown
+app.use((_req, res) => {
+    res.sendFile('index.html', { root: 'public' });
 });
 
 
@@ -84,13 +122,6 @@ function setAuthCookie(res, authToken) {
         sameSite: 'strict',
     });
 }
-
-
-
-// Return the application's default page if the path is unknown
-app.use((_req, res) => {
-    res.sendFile('index.html', { root: 'public' });
-});
 
 
 
