@@ -87,6 +87,8 @@ secureApiRouter.use(async (req, res, next) => {
 
 
 
+
+
 // Get Tasks
 apiRouter.get('/tasks', async (_req, res) => {
     const tasks = await DB.getTasks();
@@ -101,12 +103,13 @@ apiRouter.post('/task', async (req, res) => {
 });
 
 
+
+
 // Get Task Lists
 apiRouter.get('/tasklists', async (req, res) => {
     let taskLists = await DB.getLists(req.headers.username);
     res.send(taskLists);
 });
-
 
 // Add Task List
 apiRouter.post('/tasklist', async (req, res) => {
@@ -116,10 +119,18 @@ apiRouter.post('/tasklist', async (req, res) => {
     } else {
         await DB.addList(req.body);
         let taskLists = await DB.getLists(req.headers.username);
-        // taskLists = await DB.getLists(req.headers.username);
         res.send(taskLists);
     }
 });
+
+// Delete Task List
+apiRouter.delete('/tasklist', async (req, res) => {
+    await DB.deleteList(req.body);
+    let taskLists = await DB.getLists(req.headers.username);
+    res.send(taskLists);
+});
+
+
 
 
 

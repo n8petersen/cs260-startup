@@ -1,4 +1,5 @@
 const { MongoClient } = require('mongodb');
+var mongo = require('mongodb');
 const bcrypt = require('bcrypt');
 const uuid = require('uuid');
 
@@ -72,6 +73,14 @@ function getListByName(list) {
   return returnList;
 }
 
+function getListById(listId) {
+  let query = {
+    _id: ObjectId('${listId}')
+  }
+  let returnList = listCollection.findOne
+  return returnList;
+}
+
 function getLists(searchUsername) {
   let query = {
     username: searchUsername
@@ -86,6 +95,15 @@ async function addList(newList) {
   // return;
 }
 
+async function deleteList(list) {
+  // newList is an object consisting of: user, listName;
+  // await listCollection.deleteOne(list);
+  // return;
+
+  var o_id = new mongo.ObjectId(list.id);
+  await listCollection.deleteOne({'_id': o_id});
+}
+
 module.exports = {
   getUser,
   getUserByToken,
@@ -93,6 +111,8 @@ module.exports = {
   getTasks,
   addTask,
   getListByName,
+  getListById,
   getLists,
   addList,
+  deleteList,
 };

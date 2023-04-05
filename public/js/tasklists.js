@@ -1,5 +1,5 @@
 async function getLists() {
-    const username = localStorage.getItem('username');
+    let username = localStorage.getItem('username');
     let lists = [];
 
     try {
@@ -43,7 +43,35 @@ async function createList() {
             alert(body.msg);
         }
     } catch {
-        
+        alert("An error occured. Please reload and try again.");
+    }
+}
+
+async function deleteList(listId) {
+    let username = localStorage.getItem('username');
+    let deleteList = { id: listId };
+    let lists = [];
+
+    try {
+        let response = await fetch('/api/tasklist', {
+            method: 'delete',
+            body: JSON.stringify(deleteList),
+            headers: {
+                'Content-type': 'application/json; charset=UTF-8',
+                'Username': username,
+            },
+        });
+
+        let body = await response.json();
+
+        if (response?.status === 200) {
+            lists = body;
+            printTaskLists(lists);
+        } else {
+            alert(body.msg);
+        }
+    } catch {
+        alert("An error occured. Please reload and try again.");
     }
 }
 
@@ -60,8 +88,8 @@ function printTaskLists(lists) {
 function listsToHTML(list) {
     return `
         <li class="list-group-item">
-            <a href="./list.html">${list.listname}</a>
-            <button class="material-icon trash-can float-end" onclick="deleteList('${list._id}')">delete</button>
+            <a href="./list.html?listID=${list._id}">${list.listname}</a>
+            <button type="button" class="material-icon trash-can float-end" onclick="deleteList('${list._id}')">delete</button>
         </li>
     `
 }
