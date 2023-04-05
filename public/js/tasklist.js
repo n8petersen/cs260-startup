@@ -8,22 +8,22 @@ class Task {
     toHTML() {       
         if (this.done == 'false') {
             return `
-            <li class="task">
+            <li class="task list-group-item">
                 <input type="checkbox" id="${ this.id }" class="form-check-input" onclick="updateTask('${ this.id }')">
                 <label for="${ this.id }" class="task-description">${ this.text }</label>
                 <label for="${ this.id }" class="task-date">${ this.prettyDate() }</label>
-                <button class="material-icon task-delete"onclick="deleteTask('${ this.id }')">delete</button>
+                <button class="material-icon trash-can"onclick="deleteTask('${ this.id }')">delete</button>
             </li>
             `
         }
 
         else {
             return `
-            <li class="task">
+            <li class="task list-group-item">
                 <input type="checkbox" id="${ this.id }" class="form-check-input" checked onclick="updateTask('${ this.id }')">
                 <label for="${ this.id }" class="task-description checked">${ this.text }</label>
                 <label for="${ this.id }" class="task-date">${ this.prettyDate() }</label>
-                <button class="material-icon task-delete" onclick="deleteTask('${ this.id }')">delete</button>
+                <button class="material-icon trash-can" onclick="deleteTask('${ this.id }')">delete</button>
             </li>
             `
         }

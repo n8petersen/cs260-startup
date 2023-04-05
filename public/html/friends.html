@@ -29,24 +29,26 @@
 
   <main>
     <div class="left-pad center-container">
-      <div class="center-child w-75">
+      <div class="bg-light center-child border border-secondary rounded-4 middle-box">
         <h1> Friends </h1>
         <div>
-          <ul>
-            <li>
+          <ul class="list-group">
+            <li class="list-group-item">
               <span>xX_bladekiller_Xx</span>
               <button class="btn btn-danger btn-sm" onclick="needDatabase()">Remove</button>
             </li>
 
-            <li>
+            <li class="list-group-item">
               <span>ItsAMeMario</span>
               <button class="btn btn-danger btn-sm" onclick="needDatabase()">Remove</button>
             </li>
           </ul>
+          <br>
           <form class="input-group mb-3 w-50">
             <input type="text" class="form-control" placeholder="Username" aria-label="Username"
               aria-describedby="button-addon2">
-            <button class="btn btn-success" type="button" id="button-addon2" onclick="needDatabase()">Add Friend</button>
+            <button class="btn btn-success" type="button" id="button-addon2" onclick="needDatabase()">Add
+              Friend</button>
           </form>
         </div>
 
@@ -54,14 +56,14 @@
 
         <h1> Friend Requests </h1>
         <div>
-          <ul>
-            <li>
+          <ul class="list-group">
+            <li class="list-group-item">
               <span>johncena42</span>
               <button class="btn btn-success btn-sm" onclick="needDatabase()">Accept</button>
               <button class="btn btn-danger btn-sm" onclick="needDatabase()">Reject</button>
             </li>
 
-            <li>
+            <li class="list-group-item">
               <span>TotallyNotYourHelicopterParents</span>
               <button class="btn btn-success btn-sm" onclick="needDatabase()">Accept</button>
               <button class="btn btn-danger btn-sm" onclick="needDatabase()">Reject</button>

@@ -32,9 +32,9 @@
     <div class="left-pad center-container">
 
       <button class="btn btn-primary btn-sm float-end">Share List</button>
+      
       <h1> To-Do List </h1>
-
-      <div class="center-child">
+      <div class="center-child bg-light border border-secondary rounded-4 large-list">
 
         <div class="form-check form-switch form-check-inline" id="sort-switch">
           <input class="form-check-input" type='checkbox' role="switch" id="sort" />
@@ -47,27 +47,27 @@
         </div>
 
 
-        <ul class="tasklist" id="tasklist">
+        <ul class="tasklist list-group" id="tasklist">
 
           <!-- <li class="task">
             <input type="checkbox" id="bike" class="form-check-input" checked>
             <label for="bike" class="task-description checked">Buy a bike</label>
             <label for="bike" class="task-date">09-05-2022</label>
-            <button class="material-icon task-delete">delete</button>
+            <button class="material-icon trash-can">delete</button>
           </li>
 
           <li class="task">
             <input type="checkbox" id="car" class="form-check-input">
             <label for="car" class="task-description">Buy a car</label>
             <label for="car" class="task-date">09-04-2022</label>
-            <button class="material-icon task-delete">delete</button>
+            <button class="material-icon trash-can">delete</button>
           </li class="task">
 
           <li class="task">
             <input type="checkbox" id="house" class="form-check-input">
             <label for="house" class="task-description">Buy a house</label>
             <label for="house" class="task-date">09-04-2022</label>
-            <button class="material-icon task-delete">delete</button>
+            <button class="material-icon trash-can">delete</button>
           </li> -->
 
         </ul>
@@ -88,23 +88,25 @@
         <button class="btn btn-success">Add Task</button>
       </div>
     </div> -->
-    
-<!-- 
+
+    <!-- 
     <form onsubmit="myFunction()" class="row p-lg-5 g-2 w-75 position-absolute bottom-0 start-50 translate-middle" id="add-task">
         <input type="text" class="form-control" placeholder="Task" aria-label="Task" id="form-text">
         <input type='date' class="form-control" name='date' id="form-date" required />
         <button type="button" class="btn btn-success">Add Task</button>
     </form> -->
 
-    <form onsubmit="createTask(event)" class="row p-lg-5 g-2 w-75 position-absolute bottom-0 start-50 translate-middle" id="add-task">
-      
-      <div class="col"> <input type="text" class="form-control" placeholder="Task" name="description" id="form-text"> </div>
+    <form onsubmit="createTask(event)" class="row p-lg-5 g-2 w-75 position-absolute bottom-0 start-50 translate-middle"
+      id="add-task">
+
+      <div class="col"> <input type="text" class="form-control" placeholder="Task" name="description" id="form-text">
+      </div>
       <div class="col-auto"> <input type='date' class="form-control" name="date" id="form-date" required /> </div>
       <div class="col-auto"> <button type="submit" class="btn btn-success">Add Task</button> </div>
     </form>
 
-    
-    
+
+
 
 
   </main>
@@ -116,11 +118,11 @@
     </div>
   </footer>
 
-  
+
   <script src="../js/tasklist.js"></script>
   <script src="../js/script.js"></script>
 
-  
+
 </body>
 
 </html>

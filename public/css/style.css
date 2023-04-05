@@ -17,6 +17,7 @@ body {
 
 h1 {
     text-align: center;
+    text-decoration: underline;
 }
 
 .left-pad {
@@ -100,7 +101,7 @@ footer a {
 	cursor: pointer; /* Change the cursor to a pointer when hovering on this element */
 }
 
-.task-delete {
+.trash-can {
 	display: inline-block;
 	box-sizing: border-box;
 	color: red;
@@ -140,7 +141,7 @@ footer a {
 	width: 6em;
 }
 
-.task-delete {
+.trash-can {
 	display: inline-block;
 	box-sizing: border-box;
 	color: red;
@@ -152,4 +153,26 @@ footer a {
 }
 input.task-description {
 	width: 100%;
+}
+
+.middle-box {
+    width: 25%;
+    padding: 20px;
+    min-width: 400px;
+}
+
+.large-list {
+    width: 40%;
+    padding: 50px;
+    min-width: 800px;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.home {
+    width: 10%;
+    padding: 20px;
+    min-width: 400px;
 }

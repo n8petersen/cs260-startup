@@ -30,17 +30,16 @@
     <main>
         <div class="left-pad center-container">
             <h1> Login </h1>
-            <div class="center-child">
-                <div>
-                    <form>
-                        <input type='text' name='username' placeholder="Username" required />
-                        <input type='password' name='password' placeholder="Password" required />
-                        <button class="btn btn-success" onclick="needDatabase()"">Login</button><br>
-                    </form>
-                </div>
+            <div class="bg-light border border-secondary center-child rounded-4 middle-box">
+                <form>
+                    <input type='text' id='username' placeholder="Username" class="form-control" required />
+                    <input type='password' id='password' placeholder="Password" class="form-control" required />
+                    <button class="btn btn-success" onclick="loginUser()">Login</button><br>
+                </form>
                 <br>
                 <div>
-                    <a class="btn btn-primary" href="./register.html">Register</a><br>
+                    <span>New user?</span><br>
+                    <a class="btn btn-primary" href="./register.html">Register</a>
                 </div>
             </div>
         </div>
@@ -54,7 +53,8 @@
     </footer>
 
     <script src="../js/script.js"></script>
-    
+    <script src="../js/auth.js"></script>
+
 </body>
 
 </html>
