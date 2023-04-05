@@ -21,8 +21,10 @@ async function getUser(email) {
     return null;
 }
 
+// Not sure if this is even needed, since authenticated users get redirected away from Home page.
 function logout() {
     fetch(`/api/auth/logout`, {
         method: 'delete',
     }).then(() => (window.location.href = '/'));
+    localStorage.removeItem("username");
 }
