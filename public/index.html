@@ -32,9 +32,12 @@
       <h1> Welcome</h1>
       <div class="text-center bg-light center-child border border-secondary rounded-4 home">
         <span> Welcome to Checkerly!</span>
-        <a class="btn btn-sm btn-success" href="./html/login.html">Login</a>
-        <span> or </span>
-        <a class="btn btn-sm btn-success" href="./html/register.html">Register</a>
+        <div class="btn-group">
+          <button type="button" class="btn btn-sm btn-success"
+            onclick="window.location.href='./html/login.html'">Login</button>
+          <button type="button" class="btn btn-sm btn-primary"
+            onclick="window.location.href='./html/register.html'">Register</button>
+        </div>
       </div>
     </div>
   </main>
