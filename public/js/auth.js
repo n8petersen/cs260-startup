@@ -42,10 +42,11 @@ async function loginOrCreate(endpoint) {
         localStorage.setItem('username', username);
         window.location.href = 'lists.html';
     } else {
-        const modalEl = document.querySelector('#msgModal');
-        modalEl.querySelector('.modal-body').textContent = `⚠ Error: ${body.msg}`;
-        const msgModal = new bootstrap.Modal(modalEl, {});
-        msgModal.show();
+        // const modalEl = document.querySelector('#msgModal');
+        // modalEl.querySelector('.modal-body').textContent = `⚠ Error: ${body.msg}`;
+        // const msgModal = new bootstrap.Modal(modalEl, {});
+        // msgModal.show();
+        alert('Error: ' + body.msg);
     }
 }
 

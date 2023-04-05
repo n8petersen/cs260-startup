@@ -43,12 +43,56 @@ async function createUser(email, password) {
   return user;
 }
 
-function addTask(user, list, description, date) {
-  taskCollection.insertOne(user, list, description, date);
+
+
+// Tasks
+function getTasks(searchUsername) {
+  const query = {
+    username: searchUsername
+  };
+  let tasks = taskCollection.find(query);
+  return tasks.toArray();
+}
+
+function addTask(newTask) {
+  // newTask is an object consisting of: user, list, description, date
+  tasks = taskCollection.insertOne(newTask);
+  return;
+}
+
+
+
+// Lists
+function getListByName(list) {
+  let query = {
+    username: list.username,
+    listname: list.listname
+  };
+  let returnList = listCollection.findOne(query);
+  return returnList;
+}
+
+function getLists(searchUsername) {
+  let query = {
+    username: searchUsername
+  };
+  let taskLists = listCollection.find(query);
+  return taskLists.toArray();
+}
+
+async function addList(newList) {
+  // newList is an object consisting of: user, listName;
+  await listCollection.insertOne(newList);
+  // return;
 }
 
 module.exports = {
   getUser,
   getUserByToken,
-  createUser
+  createUser,
+  getTasks,
+  addTask,
+  getListByName,
+  getLists,
+  addList,
 };

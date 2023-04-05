@@ -5,14 +5,14 @@ class Task {
         this.done = done;
         this.id = id;
     }
-    toHTML() {       
+    toHTML() {
         if (this.done == 'false') {
             return `
             <li class="task list-group-item">
-                <input type="checkbox" id="${ this.id }" class="form-check-input" onclick="updateTask('${ this.id }')">
-                <label for="${ this.id }" class="task-description">${ this.text }</label>
-                <label for="${ this.id }" class="task-date">${ this.prettyDate() }</label>
-                <button class="material-icon trash-can float-end" onclick="deleteTask('${ this.id }')">delete</button>
+                <input type="checkbox" id="${this.id}" class="form-check-input" onclick="updateTask('${this.id}')">
+                <label for="${this.id}" class="task-description">${this.text}</label>
+                <label for="${this.id}" class="task-date">${this.prettyDate()}</label>
+                <button class="material-icon trash-can float-end" onclick="deleteTask('${this.id}')">delete</button>
             </li>
             `
         }
@@ -20,34 +20,34 @@ class Task {
         else {
             return `
             <li class="task list-group-item">
-                <input type="checkbox" id="${ this.id }" class="form-check-input" checked onclick="updateTask('${ this.id }')">
-                <label for="${ this.id }" class="task-description checked">${ this.text }</label>
-                <label for="${ this.id }" class="task-date">${ this.prettyDate() }</label>
-                <button class="material-icon trash-can float-end" onclick="deleteTask('${ this.id }')">delete</button>
+                <input type="checkbox" id="${this.id}" class="form-check-input" checked onclick="updateTask('${this.id}')">
+                <label for="${this.id}" class="task-description checked">${this.text}</label>
+                <label for="${this.id}" class="task-date">${this.prettyDate()}</label>
+                <button class="material-icon trash-can float-end" onclick="deleteTask('${this.id}')">delete</button>
             </li>
             `
         }
-        
+
     }
     prettyDate() {
         var month = this.date.substring(5, 7);
         var day = this.date.substring(8, 10);
         var year = this.date.substring(0, 4);
-        return `${ month }/${ day }/${ year }`
+        return `${month}/${day}/${year}`
     }
-    
-    toggle() {       
+
+    toggle() {
         if (this.done == 'true') {
             this.done = 'false';
         }
         else {
             this.done = 'true';
         }
-        return; 
+        return;
     }
 }
 
-let tasks = [] // declare tasks array
+let tasks = []; // declare tasks array
 tasks = this.readStorage(); // read in the localstorage
 this.readTasks(); // update the DOM
 
@@ -74,7 +74,7 @@ function readStorage() {
 function createTask(event) {
     // console.log("creating task");
     let formData = new FormData(event.currentTarget); // Pull in form data from DOM
-    let json = JSON.stringify(Object.fromEntries(formData)); 
+    let json = JSON.stringify(Object.fromEntries(formData));
     json = JSON.parse(json); // Format it to JSON
 
     var newTask = new Task({ // Create a new task
@@ -102,20 +102,20 @@ function readTasks() {
     // Clear the DOM, get latest storage, and add it out the DOM
     let list = document.getElementById('tasklist');
     list.innerHTML = '';
-    tasks = this.readStorage(); 
+    tasks = this.readStorage();
 
     for (let i = 0; i < tasks.length; i++) {
-        list.innerHTML += tasks[i].toHTML(); 
+        list.innerHTML += tasks[i].toHTML();
     }
     // console.log("Reading data to DOM")
     return;
 }
 
 
-function updateTask(id) { 
+function updateTask(id) {
     // Toggles checkmark and 'done' state on task
     // console.log("Update id: " + id);
-    for(let i = 0; i < tasks.length; i++) {
+    for (let i = 0; i < tasks.length; i++) {
         if (tasks[i].id == id) {
             tasks[i].toggle();
         }
@@ -128,7 +128,7 @@ function updateTask(id) {
 
 function deleteTask(id) {
     // console.log("Delete id: " + id); 
-    for(let i = 0; i < tasks.length; i++) { // Go through array 
+    for (let i = 0; i < tasks.length; i++) { // Go through array 
         if (tasks[i].id == id) { // Find task by ID
             tasks.splice(i, 1); // Remove from array
         }
@@ -204,9 +204,9 @@ function filterByComplete() {
     else {
         // console.log("Filtering out completed tasks.");
         let list = document.getElementById('tasklist');
-        list.innerHTML = ''; 
+        list.innerHTML = '';
         for (let i = 0; i < filteredTasks.length; i++) {
-            list.innerHTML+= filteredTasks[i].toHTML();   
+            list.innerHTML += filteredTasks[i].toHTML();
         }
         filteredComplete = true; // sets the filtered status to true
         // console.log("Reading filtered data to DOM")   
@@ -216,11 +216,11 @@ function filterByComplete() {
 
 function cleanInput(string) { // Sanitizes input to make prevent XSS Attack
     const map = { // create map of various characters to sanitize 
-        '<': '&lt;', 
+        '<': '&lt;',
         '>': '&gt;',
     };
     const reg = /[<>]/ig; // use RegEx for the angled brackets 
-    return string.replace(reg, (match)=>(map[match])); // replace the angle brackets with their mapped equivalent 
+    return string.replace(reg, (match) => (map[match])); // replace the angle brackets with their mapped equivalent 
 
     // return string; // Comment rest of block and uncomment this to remove XSS defense.
 }
@@ -234,7 +234,7 @@ function saveFormText() {
     //console.log('Saving Text: ' + localStorage.getItem('savedFormText'))
 }
 
-document.getElementById("form-date").addEventListener("input", saveFormDate); 
+document.getElementById("form-date").addEventListener("input", saveFormDate);
 function saveFormDate() {
     let saveDate = document.getElementById('form-date').value;
     localStorage.setItem('savedFormDate', saveDate);
@@ -247,5 +247,3 @@ function clearTasks() {
         deleteTask(tasks[0].id);
     }
 }
-
-

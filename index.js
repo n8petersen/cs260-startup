@@ -87,17 +87,38 @@ secureApiRouter.use(async (req, res, next) => {
 
 
 
-// GetTasks
+// Get Tasks
 apiRouter.get('/tasks', async (_req, res) => {
     const tasks = await DB.getTasks();
     res.send(tasks);
 });
 
-// AddTask
+// Add Task
 apiRouter.post('/task', async (req, res) => {
     DB.addTask(req.body);
     const tasks = await DB.getTasks();
     res.send(tasks);
+});
+
+
+// Get Task Lists
+apiRouter.get('/tasklists', async (req, res) => {
+    let taskLists = await DB.getLists(req.headers.username);
+    res.send(taskLists);
+});
+
+
+// Add Task List
+apiRouter.post('/tasklist', async (req, res) => {
+    let list = await DB.getListByName(req.body)
+    if (list) {
+        res.status(409).send({ msg: 'List under that name already exists.' });
+    } else {
+        await DB.addList(req.body);
+        let taskLists = await DB.getLists(req.headers.username);
+        // taskLists = await DB.getLists(req.headers.username);
+        res.send(taskLists);
+    }
 });
 
 

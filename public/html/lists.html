@@ -31,24 +31,22 @@
         <div class="left-pad center-container">
             <h1> Lists </h1>
             <div class="center-child bg-light middle-box border border-secondary rounded-4">
-                <ul class="list-group">
+                <ul class="list-group" id="lists">
                     <li class="list-group-item">
                         <a href="./list.html">To-Do List</a>
-                        <button class="material-icon trash-can float-end" onclick="deleteList('${ this.id }')">delete</button>
+                        <button class="material-icon trash-can float-end"
+                            onclick="deleteList('${ this.id }')">delete</button>
                     </li>
                 </ul>
 
                 <br>
 
-                <form>
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="List Name" aria-label="List Name"
-                            aria-describedby="basic-addon2">
-                        <div class="input-group-append">
-                            <button class="btn btn-success" type="button" onclick="needDatabase()">Create List</button>
-                        </div>
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="List Name" id="newListName">
+                    <div class="input-group-append">
+                        <button class="btn btn-success" type="button" id="newListButton" onclick="createList()">Create List</button>
                     </div>
-                </form>
+                </div>
             </div>
         </div>
     </main>
@@ -61,7 +59,8 @@
     </footer>
 
     <script src="../js/checkAuth.js"></script>
-    
+    <script src="../js/tasklists.js"></script>
+
     <script src="../js/script.js"></script>
 
 </body>
