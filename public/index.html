@@ -6,8 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Checkerly</title>
 
-  <link rel="stylesheet" href="./src/css/style.css">
-  <link rel="icon" href="./src/favicon.ico">
+  <link rel="stylesheet" href="./css/style.css">
+  <link rel="icon" href="./favicon.ico">
 
   <!-- Include bootstrap CSS framework -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -19,27 +19,25 @@
     <nav class="topnav">
       <a class="" href="#">Checkerly</a>
       <a class="active" href="./">Home</a>
-      <a href="./src/html/lists.html">Lists</a>
+      <!-- <a href="./html/lists.html">Lists</a> -->
       <div class="right-nav">
-        <a href="./src/html/friends.html">Friends</a>
-        <a href="./src/html/login.html">Login</a>
+        <!-- <a href="./html/friends.html">Friends</a> -->
+        <a href="./html/login.html">Login</a>
       </div>
     </nav>
   </header>
 
   <main>
-    <div class="left-pad center-container">
+    <div class="center-container">
       <h1> Welcome</h1>
-      <div class="center-child">
-        <span> If you have not already signed in, you can</span>
-        <a class="btn btn-success" href="./src/html/login.html">Login</a>
-        <span> or </span>
-        <a class="btn btn-success" href="./src/html/register.html">Register</a>
-
-        <br><br>
-
-        <span>Otherwise, you can view your</span>
-        <a class="btn btn-success" href="./src/html/lists.html">Lists</a>
+      <div class="text-center bg-light center-child border border-secondary rounded-4 home">
+        <p> Welcome to Checkerly!</p>
+        <div class="btn-group">
+          <button type="button" class="btn btn-sm btn-success"
+            onclick="window.location.href='./html/login.html'">Login</button>
+          <button type="button" class="btn btn-sm btn-primary"
+            onclick="window.location.href='./html/register.html'">Register</button>
+        </div>
       </div>
     </div>
   </main>
@@ -51,7 +49,10 @@
     </div>
   </footer>
 
-  <script src="./src/js/script.js"></script>
+  <script src="./js/script.js"></script>
+  <script src="./js/homeAuth.js"></script>
+
+  </script>
 
 </body>
 

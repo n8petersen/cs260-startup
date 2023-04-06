@@ -18,36 +18,40 @@
     <header>
         <nav class="topnav">
             <a class="" href="#">Checkerly</a>
-            <a href="../../">Home</a>
+            <!-- <a href="../">Home</a> -->
             <a class="active" href="./lists.html">Lists</a>
             <div class="right-nav">
-                <a href="./friends.html">Friends</a>
-                <a href="./login.html">Login</a>
+                <!-- <a href="./friends.html">Friends</a> -->
+                <span id="currentUser"> </span>
+                <span href="." onclick="logout()">Logout</span>
             </div>
         </nav>
     </header>
 
     <main>
+        <div class="p-3" id="user-messages"></div>
         <div class="left-pad center-container">
-            <h1> Lists </h1>
-            <div class="center-child">
-                <ul class="list-group">
-                    <li class="list-group-item">
+            <h1 class="header"> Lists </h1>
+            <div class="center-child bg-light middle-box border border-secondary rounded-4">
+                <ul class="list-group" id="lists">
+                    <!-- <li class="list-group-item">
                         <a href="./list.html">To-Do List</a>
-                    </li>
+                        <button class="material-icon trash-can float-end"
+                            onclick="deleteList('${ this.id }')">delete</button>
+                    </li> -->
+                    
+                    <!-- Lists from database will populate here -->
+
                 </ul>
 
                 <br>
 
-                <form>
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="List Name" aria-label="List Name"
-                            aria-describedby="basic-addon2">
-                        <div class="input-group-append">
-                            <button class="btn btn-success" type="button" onclick="needDatabase()">Create List</button>
-                        </div>
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="List Name" id="newListName">
+                    <div class="input-group-append">
+                        <button class="btn btn-success" type="button" id="newListButton" onclick="createList()">Create List</button>
                     </div>
-                </form>
+                </div>
             </div>
         </div>
     </main>
@@ -58,6 +62,9 @@
             <a class="text-reset" href="https://github.com/n8petersen/startup"> Source </a>
         </div>
     </footer>
+
+    <script src="../js/checkAuth.js"></script>
+    <script src="../js/tasklists.js"></script>
 
     <script src="../js/script.js"></script>
 

@@ -15,8 +15,13 @@ body {
     flex-direction: column;
 }
 
-h1 {
+h1.header {
     text-align: center;
+    text-decoration: underline;
+    top: 80px;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .left-pad {
@@ -26,7 +31,7 @@ h1 {
 .center-container {
     margin: 15px;
     width: 100% - 10px;
-    height: 90vh;
+    height: 80vh;
     position: relative;
 }
 
@@ -45,7 +50,7 @@ h1 {
     background-color: #333;
 }
 
-.topnav a {
+.topnav a, .topnav span {
     float: left;
     color: #f2f2f2;
     text-align: center;
@@ -54,12 +59,13 @@ h1 {
     font-size: 17px;
 }
 
-.topnav a:hover {
+.topnav a:hover, .topnav span:hover {
     background-color: #ddd;
     color: black;
+    cursor: pointer;
 }
 
-.topnav a.active {
+.topnav a.active, .topnav span.active {
     background-color: var(--theme-color);
     color: white;
 }
@@ -100,11 +106,11 @@ footer a {
 	cursor: pointer; /* Change the cursor to a pointer when hovering on this element */
 }
 
-.task-delete {
+.trash-can {
 	display: inline-block;
 	box-sizing: border-box;
 	color: red;
-	/* Add property to change delete icon color */
+    padding: 0px !important;
 }
 .visually-hidden { 
     border: 0;
@@ -140,7 +146,7 @@ footer a {
 	width: 6em;
 }
 
-.task-delete {
+.trash-can {
 	display: inline-block;
 	box-sizing: border-box;
 	color: red;
@@ -152,4 +158,48 @@ footer a {
 }
 input.task-description {
 	width: 100%;
+}
+
+.middle-box {
+    width: 33%;
+    padding: 20px;
+    min-width: 500px;
+}
+
+.large-list {
+    width: 40%;
+    padding: 50px;
+    min-width: 800px;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.home {
+    width: 10%;
+    padding: 20px;
+    min-width: 400px;
+}
+
+#currentUser {
+    color: #04d085;
+}
+
+#currentUser:hover {
+    cursor: pointer;
+    background-color: #333333;
+    color: #04d085;
+    cursor: auto;
+}
+
+#currentUser {
+    color: #04d085;
+}
+
+#currentUser:hover {
+    cursor: pointer;
+    background-color: #333333;
+    color: #04d085;
+    cursor: auto;
 }

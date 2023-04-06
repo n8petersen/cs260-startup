@@ -18,10 +18,10 @@
     <header>
         <nav class="topnav">
             <a class="" href="#">Checkerly</a>
-            <a href="../../">Home</a>
-            <a href="./lists.html">Lists</a>
+            <a href="../">Home</a>
+            <!-- <a href="./lists.html">Lists</a> -->
             <div class="right-nav">
-                <a href="./friends.html">Friends</a>
+                <!-- <a href="./friends.html">Friends</a> -->
                 <a class="active" href="./login.html">Login</a>
             </div>
         </nav>
@@ -30,14 +30,18 @@
     <main>
         <div class="left-pad center-container">
             <h1> Register </h1>
-            <div class="center-child">
+            <div class="bg-light border border-secondary center-child rounded-4 middle-box">
                 <form>
-                    <input type='text' name='username' placeholder="Username" class="form-control" required /><br>
-                    <input type='password' name='password' placeholder="Password" class="form-control" required />
-                    <input type='password' name='password-confirm' placeholder="Confirm Password" class="form-control"
-                        required /><br>
-                    <button class="btn btn-success" onclick="needDatabase()">Register</button><br>
+                    <input type='text' id='username' placeholder="Username" class="form-control" required /><br>
+                    <input type='password' id='password' placeholder="Password" class="form-control" />
+                    <input type='password' id='password-confirm' placeholder="Confirm Password" class="form-control" />
+                    <button type="button" class="btn btn-primary" onclick="createUser()">Register</button><br>
                 </form>
+                <br>
+                <div>
+                    <span>Already registered?</span><br>
+                    <a class="btn btn-success" href="./login.html">Login</a>
+                </div>
             </div>
         </div>
     </main>
@@ -50,7 +54,7 @@
     </footer>
 
     <script src="../js/script.js"></script>
-
+    <script src="../js/auth.js"></script>
 </body>
 
 </html>

@@ -18,53 +18,59 @@
   <header>
     <nav class="topnav">
       <a class="" href="#">Checkerly</a>
-      <a href="../../">Home</a>
+      <!-- <a href="../">Home</a> -->
       <a href="./lists.html">Lists</a>
       <div class="right-nav">
         <a class="active" href="./friends.html">Friends</a>
-        <a href="./login.html">Login</a>
+        <span href="." onclick="logout()">Logout</span>
       </div>
     </nav>
   </header>
 
   <main>
     <div class="left-pad center-container">
-      <div class="center-child w-75">
+      <div class="bg-light center-child border border-secondary rounded-4 middle-box">
         <h1> Friends </h1>
         <div>
-          <ul>
-            <li>
+          <ul class="list-group">
+            <li class="list-group-item">
               <span>xX_bladekiller_Xx</span>
-              <button class="btn btn-danger btn-sm" onclick="needDatabase()">Remove</button>
+              <button type="button" class="btn btn-danger btn-sm float-end" onclick="needDatabase()">Remove</button>
             </li>
 
-            <li>
+            <li class="list-group-item">
               <span>ItsAMeMario</span>
-              <button class="btn btn-danger btn-sm" onclick="needDatabase()">Remove</button>
+              <button type="button" class="btn btn-danger btn-sm float-end" onclick="needDatabase()">Remove</button>
             </li>
           </ul>
-          <form class="input-group mb-3 w-50">
+          <br>
+          <div class="input-group mb-3 w-100">
             <input type="text" class="form-control" placeholder="Username" aria-label="Username"
               aria-describedby="button-addon2">
-            <button class="btn btn-success" type="button" id="button-addon2" onclick="needDatabase()">Add Friend</button>
-          </form>
+            <button class="btn btn-success" type="button" id="button-addon2" onclick="needDatabase()">Add
+              Friend</button>
+          </div>
         </div>
 
         <br><br><br><br><br><br>
 
         <h1> Friend Requests </h1>
         <div>
-          <ul>
-            <li>
+          <ul class="list-group">
+            <li class="list-group-item">
               <span>johncena42</span>
-              <button class="btn btn-success btn-sm" onclick="needDatabase()">Accept</button>
-              <button class="btn btn-danger btn-sm" onclick="needDatabase()">Reject</button>
+              <div class="btn-group float-end">
+                <button class="btn btn-success btn-sm" onclick="needDatabase()">Accept</button>
+                <button class="btn btn-danger btn-sm" onclick="needDatabase()">Reject</button>
+              </div>
             </li>
 
-            <li>
+            <li class="list-group-item">
               <span>TotallyNotYourHelicopterParents</span>
-              <button class="btn btn-success btn-sm" onclick="needDatabase()">Accept</button>
-              <button class="btn btn-danger btn-sm" onclick="needDatabase()">Reject</button>
+              <div class="btn-group float-end">
+                <button class="btn btn-success btn-sm" onclick="needDatabase()">Accept</button>
+                <button class="btn btn-danger btn-sm" onclick="needDatabase()">Reject</button>
+              </div>
             </li>
           </ul>
         </div>
@@ -78,6 +84,8 @@
       <a class="text-reset" href="https://github.com/n8petersen/startup"> Source </a>
     </div>
   </footer>
+
+  <script src="../js/checkAuth.js"></script>
 
   <script src="../js/script.js"></script>
 
