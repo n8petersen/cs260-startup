@@ -57,6 +57,39 @@ async function addTask() {
     }
 }
 
+async function updateTask(taskId, taskDoneState) {
+    let username = localStorage.getItem('username');
+    let newDoneState = !taskDoneState
+    let listid = listID;
+    let updateList = { id: taskId, setDone: newDoneState };
+
+    let tasks = [];
+
+    try {
+        let response = await fetch('/api/task', {
+            method: 'put',
+            body: JSON.stringify(updateList),
+            headers: {
+                'Content-type': 'application/json; charset=UTF-8',
+                'Username': username,
+                'ListID': listid
+            },
+        });
+
+        let body = await response.json();
+
+        if (response?.status === 200) {
+            tasks = body;
+            printTasks(tasks);
+        } else {
+            alert(body.msg);
+        }
+
+    } catch {
+        alert("An error occured. Please reload and try again.");
+    }
+}
+
 function printTasks(tasks) {
     let taskList = document.getElementById('tasklist');
     taskList.innerHTML = '';
@@ -71,7 +104,7 @@ function taskToHTML(task) {
     if (task.done == false) {
         return `
         <li class="task list-group-item">
-            <input type="checkbox" id="${task._id}" class="form-check-input" onclick="updateTask('${task._id}')">
+            <input type="checkbox" id="${task._id}" class="form-check-input" onclick="updateTask('${task._id}', ${task.done})">
             <label for="${task._id}" class="task-description">${task.description}</label>
             <label for="${task._id}" class="task-date">${prettyDate(task.date)}</label>
             <button class="material-icon trash-can float-end" onclick="deleteTask('${task._id}')">delete</button>
@@ -82,7 +115,7 @@ function taskToHTML(task) {
     else {
         return `
         <li class="task list-group-item">
-            <input type="checkbox" id="${task._id}" class="form-check-input" checked onclick="updateTask('${task._id}')">
+            <input type="checkbox" id="${task._id}" class="form-check-input" checked onclick="updateTask('${task._id}', ${task.done})">
             <label for="${task._id}" class="task-description checked">${task.description}</label>
             <label for="${task._id}" class="task-date">${prettyDate(task.date)}</label>
             <button class="material-icon trash-can float-end" onclick="deleteTask('${task._id}')">delete</button>

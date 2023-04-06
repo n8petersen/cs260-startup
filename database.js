@@ -70,7 +70,7 @@ async function deleteTask(task) {
 
 async function updateTask(task) {
   let o_id = new mongo.ObjectId(task.id);
-  let newValue = { $set : {done: !done}}
+  let newValue = { $set : {done: task.setDone}}
   await taskCollection.updateOne({'_id': o_id}, newValue);
 }
 
@@ -96,16 +96,11 @@ function getLists(searchUsername) {
 }
 
 async function addList(list) {
-  // newList is an object consisting of: user, listName;
   await listCollection.insertOne(list);
-  // return;
+
 }
 
 async function deleteList(list) {
-  // newList is an object consisting of: user, listName;
-  // await listCollection.deleteOne(list);
-  // return;
-
   var o_id = new mongo.ObjectId(list.id);
   await listCollection.deleteOne({'_id': o_id});
 }

@@ -1,4 +1,4 @@
-Add Update and Delete functions for Tasks
+Add Delete function for Tasks
 Sort and Filter Tasks
 add websocket
 - just send a message to everyone anytime someone creates a new list.

@@ -102,16 +102,22 @@ apiRouter.post('/task', async (req, res) => {
     res.send(tasks);
 });
 
+apiRouter.put('/task', async (req, res) => {
+    await DB.updateTask(req.body);
+    let tasks = await DB.getTasks(req.headers.username, req.headers.listid);
+    res.send(tasks);
+});
 
 
 
-// Get Task Lists
+
+// Get Lists
 apiRouter.get('/tasklists', async (req, res) => {
     let taskLists = await DB.getLists(req.headers.username);
     res.send(taskLists);
 });
 
-// Add Task List
+// Add List
 apiRouter.post('/tasklist', async (req, res) => {
     let list = await DB.getListByName(req.body)
     if (list) {
@@ -123,7 +129,7 @@ apiRouter.post('/tasklist', async (req, res) => {
     }
 });
 
-// Delete Task List
+// Delete List
 apiRouter.delete('/tasklist', async (req, res) => {
     await DB.deleteList(req.body);
     let taskLists = await DB.getLists(req.headers.username);
