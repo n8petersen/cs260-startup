@@ -186,6 +186,16 @@ input.task-description {
     cursor: pointer;
     background-color: #333333;
     color: #04d085;
-    /* color: white; */
+    cursor: auto;
+}
+
+#currentUser {
+    color: #04d085;
+}
+
+#currentUser:hover {
     cursor: pointer;
+    background-color: #333333;
+    color: #04d085;
+    cursor: auto;
 }
