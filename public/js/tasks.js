@@ -1,3 +1,6 @@
+const newListEvent = 'newList';
+const newTaskEvent = 'newTask';
+
 async function getTasks() {
     let username = localStorage.getItem('username');
     let listid = listID;
@@ -51,6 +54,7 @@ async function addTask() {
         if (response?.status === 200) {
             tasks = body;
             printTasks(tasks);
+            broadcastEvent(username, newTaskEvent);
         } else {
             alert(body.msg);
         }
@@ -128,15 +132,15 @@ function sortByDate() {
     if (sortedDate === true) { // check if we are already sorted by date
         printTasks(tasks); // print the unsorted tasks
         sortedDate = false; // and now set the sortedDate flag to false
-    } 
+    }
     else { // otherwise we are unsorted
         printTasks(sortedTasks); // print the sorted tasks
         sortedDate = true; // set the sortedDate flag to true
     }
-    if (filteredComplete === true) { // check if we need to refilter
-        filteredComplete = false; // set it to false so it will get set to true in function
-        filterByComplete();
-    }
+    // if (filteredComplete === true) { // check if we need to refilter
+    //     filteredComplete = false; // set it to false so it will get set to true in function
+    //     filterByComplete();
+    // }
 }
 
 function filterByComplete() {
@@ -150,10 +154,10 @@ function filterByComplete() {
         printTasks(filteredTasks);
         filteredComplete = true; // sets the filtered status to true
     }
-    if (sortedDate == true) { // Re-sorts if necessary after un-filtering
-        sortedDate = false; // will re-sort, so we need to set it to false so when it gets in function it will sort it.
-        sortByDate();
-    }
+    // if (sortedDate == true) { // Re-sorts if necessary after un-filtering
+    //     sortedDate = false; // will re-sort, so we need to set it to false so when it gets in function it will sort it.
+    //     sortByDate();
+    // }
 }
 
 function compareDates(a, b) {
@@ -254,3 +258,45 @@ input.addEventListener("keypress", function (event) {
         document.getElementById("addTaskButton").click();
     }
 });
+
+
+configureWebSocket();
+
+
+// Functionality for peer communication using WebSocket
+function configureWebSocket() {
+    const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
+
+    socket = new WebSocket(`${protocol}://${window.location.host}/ws`);
+
+    socket.onopen = (event) => {
+        displayMsg('Database', 'connected');
+    };
+    socket.onclose = (event) => {
+        displayMsg('Database', 'disconnected');
+    };
+
+    socket.onmessage = async (event) => {
+        const msg = JSON.parse(await event.data.text());
+        if (msg.type === newTaskEvent) {
+            displayMsg(msg.from, `created a new task.`);
+        }
+        else if (msg.type === newListEvent) {
+            displayMsg(msg.from, `created a new list.`);
+        }
+    };
+}
+
+function displayMsg(from, msg) {
+    const chatText = document.querySelector('#user-messages');
+    chatText.innerHTML +=
+        `<div class="event"><span>${from}</span> ${msg}</div>`;
+}
+
+function broadcastEvent(from, type) {
+    const event = {
+        from: from,
+        type: type
+    };
+    socket.send(JSON.stringify(event));
+}

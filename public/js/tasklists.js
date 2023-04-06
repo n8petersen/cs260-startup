@@ -1,3 +1,6 @@
+const newListEvent = 'newList';
+const newTaskEvent = 'newTask';
+
 async function getLists() {
     let username = localStorage.getItem('username');
     let lists = [];
@@ -39,6 +42,7 @@ async function createList() {
         if (response?.status === 200) {
             lists = body;
             printTaskLists(lists);
+            broadcastEvent(username, newListEvent);
         } else {
             alert(body.msg);
         }
@@ -113,3 +117,47 @@ input.addEventListener("keypress", function (event) {
         document.getElementById("newListButton").click();
     }
 });
+
+
+
+
+configureWebSocket();
+
+
+// Functionality for peer communication using WebSocket
+function configureWebSocket() {
+    const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
+
+    socket = new WebSocket(`${protocol}://${window.location.host}/ws`);
+
+    socket.onopen = (event) => {
+        displayMsg('Database', 'connected');
+    };
+    socket.onclose = (event) => {
+        displayMsg('Database', 'disconnected');
+    };
+
+    socket.onmessage = async (event) => {
+        const msg = JSON.parse(await event.data.text());
+        if (msg.type === newTaskEvent) {
+            displayMsg(msg.from, `created a new task.`);
+        }
+        else if (msg.type === newListEvent) {
+            displayMsg(msg.from, `created a new list.`);
+        }
+    };
+}
+
+function displayMsg(from, msg) {
+    const chatText = document.querySelector('#user-messages');
+    chatText.innerHTML +=
+        `<div class="event"><span>${from}</span> ${msg}</div>`;
+}
+
+function broadcastEvent(from, type) {
+    const event = {
+        from: from,
+        type: type
+    };
+    socket.send(JSON.stringify(event));
+}

@@ -3,6 +3,7 @@ const bcrypt = require('bcrypt');
 const express = require('express');
 const app = express();
 const DB = require('./database.js');
+const { PeerProxy } = require('./peerProxy.js');
 
 // use .env variables
 require('dotenv').config()
@@ -173,6 +174,10 @@ function setAuthCookie(res, authToken) {
 
 
 
-app.listen(port, () => {
+// Web Socket Peer Proxy
+
+const httpService = app.listen(port, () => {
     console.log(`Listening on port ${port}`);
-});
+  });
+
+new PeerProxy(httpService);
