@@ -61,14 +61,46 @@ async function updateTask(taskId, taskDoneState) {
     let username = localStorage.getItem('username');
     let newDoneState = !taskDoneState
     let listid = listID;
-    let updateList = { id: taskId, setDone: newDoneState };
+    let updateTask = { id: taskId, setDone: newDoneState };
 
     let tasks = [];
 
     try {
         let response = await fetch('/api/task', {
             method: 'put',
-            body: JSON.stringify(updateList),
+            body: JSON.stringify(updateTask),
+            headers: {
+                'Content-type': 'application/json; charset=UTF-8',
+                'Username': username,
+                'ListID': listid
+            },
+        });
+
+        let body = await response.json();
+
+        if (response?.status === 200) {
+            tasks = body;
+            printTasks(tasks);
+        } else {
+            alert(body.msg);
+        }
+
+    } catch {
+        alert("An error occured. Please reload and try again.");
+    }
+}
+
+async function deleteTask(taskId) {
+    let username = localStorage.getItem('username');
+    let listid = listID;
+    let deleteTask = { id: taskId };
+
+    let tasks = [];
+
+    try {
+        let response = await fetch('/api/task', {
+            method: 'delete',
+            body: JSON.stringify(deleteTask),
             headers: {
                 'Content-type': 'application/json; charset=UTF-8',
                 'Username': username,

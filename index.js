@@ -102,8 +102,16 @@ apiRouter.post('/task', async (req, res) => {
     res.send(tasks);
 });
 
+// Update Task
 apiRouter.put('/task', async (req, res) => {
     await DB.updateTask(req.body);
+    let tasks = await DB.getTasks(req.headers.username, req.headers.listid);
+    res.send(tasks);
+});
+
+// Delete Task
+apiRouter.delete('/task', async (req, res) => {
+    await DB.deleteTask(req.body);
     let tasks = await DB.getTasks(req.headers.username, req.headers.listid);
     res.send(tasks);
 });

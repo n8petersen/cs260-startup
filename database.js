@@ -63,15 +63,15 @@ async function addTask(task) {
   return;
 }
 
-async function deleteTask(task) {
-  let o_id = new mongo.ObjectId(task.id);
-  await taskCollection.deleteOne({'_id': o_id});
-}
-
 async function updateTask(task) {
   let o_id = new mongo.ObjectId(task.id);
   let newValue = { $set : {done: task.setDone}}
   await taskCollection.updateOne({'_id': o_id}, newValue);
+}
+
+async function deleteTask(task) {
+  let o_id = new mongo.ObjectId(task.id);
+  await taskCollection.deleteOne({'_id': o_id});
 }
 
 
