@@ -105,6 +105,10 @@ function prettyDate(date) {
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 const listID = urlParams.get('listID');
+const listName = urlParams.get('listName')
+
+// set the page's list name
+document.getElementById('currentListName').innerHTML = listName;
 
 
 // print tasks from list on page load

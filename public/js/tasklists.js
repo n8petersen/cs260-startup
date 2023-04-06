@@ -88,7 +88,7 @@ function printTaskLists(lists) {
 function listToHTML(list) {
     return `
         <li class="list-group-item">
-            <a href="./list.html?listID=${list._id}">${list.listname}</a>
+            <a href="./list.html?listID=${list._id}&listName=${list.listname}">${list.listname}</a>
             <button type="button" class="material-icon trash-can float-end" onclick="deleteList('${list._id}')">delete</button>
         </li>
     `
