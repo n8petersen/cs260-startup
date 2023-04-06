@@ -15,9 +15,13 @@ body {
     flex-direction: column;
 }
 
-h1 {
+h1.header {
     text-align: center;
     text-decoration: underline;
+    top: 80px;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .left-pad {
@@ -27,7 +31,7 @@ h1 {
 .center-container {
     margin: 15px;
     width: 100% - 10px;
-    height: 90vh;
+    height: 80vh;
     position: relative;
 }
 
