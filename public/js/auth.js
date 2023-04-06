@@ -20,8 +20,10 @@ async function createUser() {
     if (password !== password_confirm) {
         alert("Passwords don't match.");
         event.preventDefault();
+    } else {
+        loginOrCreate(`/api/auth/create`);
     }
-    loginOrCreate(`/api/auth/create`);
+    
 }
 
 async function loginOrCreate(endpoint) {
