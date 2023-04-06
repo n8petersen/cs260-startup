@@ -47,37 +47,43 @@ async function createUser(email, password) {
 
 
 // Tasks
-function getTasks(searchUsername) {
+function getTasks(searchUsername, listId) {
   const query = {
-    username: searchUsername
+    username: searchUsername,
+    listid: listId
   };
   let tasks = taskCollection.find(query);
+
   return tasks.toArray();
 }
 
-function addTask(newTask) {
+async function addTask(task) {
   // newTask is an object consisting of: user, list, description, date
-  tasks = taskCollection.insertOne(newTask);
+  await taskCollection.insertOne(task);
   return;
 }
+
+async function deleteTask(task) {
+  let o_id = new mongo.ObjectId(task.id);
+  await taskCollection.deleteOne({'_id': o_id});
+}
+
+async function updateTask(task) {
+  let o_id = new mongo.ObjectId(task.id);
+  let newValue = { $set : {done: !done}}
+  await taskCollection.updateOne({'_id': o_id}, newValue);
+}
+
 
 
 
 // Lists
-function getListByName(list) {
+function getListByName(task) {
   let query = {
-    username: list.username,
-    listname: list.listname
+    username: task.username,
+    listname: task.listname
   };
   let returnList = listCollection.findOne(query);
-  return returnList;
-}
-
-function getListById(listId) {
-  let query = {
-    _id: ObjectId('${listId}')
-  }
-  let returnList = listCollection.findOne
   return returnList;
 }
 
@@ -89,9 +95,9 @@ function getLists(searchUsername) {
   return taskLists.toArray();
 }
 
-async function addList(newList) {
+async function addList(list) {
   // newList is an object consisting of: user, listName;
-  await listCollection.insertOne(newList);
+  await listCollection.insertOne(list);
   // return;
 }
 
@@ -110,8 +116,9 @@ module.exports = {
   createUser,
   getTasks,
   addTask,
+  deleteTask,
+  updateTask,
   getListByName,
-  getListById,
   getLists,
   addList,
   deleteList,

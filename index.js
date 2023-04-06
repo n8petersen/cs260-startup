@@ -90,15 +90,15 @@ secureApiRouter.use(async (req, res, next) => {
 
 
 // Get Tasks
-apiRouter.get('/tasks', async (_req, res) => {
-    const tasks = await DB.getTasks();
+apiRouter.get('/tasks', async (req, res) => {
+    let tasks = await DB.getTasks(req.headers.username, req.headers.listid);
     res.send(tasks);
 });
 
 // Add Task
 apiRouter.post('/task', async (req, res) => {
-    DB.addTask(req.body);
-    const tasks = await DB.getTasks();
+    await DB.addTask(req.body);
+    let tasks = await DB.getTasks(req.body.username, req.body.listid);
     res.send(tasks);
 });
 
@@ -143,6 +143,8 @@ app.use(function (err, req, res, next) {
 app.use((_req, res) => {
     res.sendFile('index.html', { root: 'public' });
 });
+
+
 
 
 

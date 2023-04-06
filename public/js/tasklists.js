@@ -80,12 +80,12 @@ function printTaskLists(lists) {
     listOfLists.innerHTML = '';
 
     for (let i = 0; i < lists.length; i++) {
-        listOfLists.innerHTML += listsToHTML(lists[i]);
+        listOfLists.innerHTML += listToHTML(lists[i]);
     }
     return;
 }
 
-function listsToHTML(list) {
+function listToHTML(list) {
     return `
         <li class="list-group-item">
             <a href="./list.html?listID=${list._id}">${list.listname}</a>
