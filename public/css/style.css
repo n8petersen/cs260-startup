@@ -203,3 +203,9 @@ input.task-description {
     color: #04d085;
     cursor: auto;
 }
+
+#quote {
+    font-size: small;
+    padding: 50px;
+    text-align: center;
+}
