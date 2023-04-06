@@ -1,5 +1,4 @@
 Add Update and Delete functions for Tasks
 Sort and Filter Tasks
-Comment out friends list stuff
 add websocket
 - just send a message to everyone anytime someone creates a new list.
