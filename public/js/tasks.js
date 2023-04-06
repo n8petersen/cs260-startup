@@ -2,8 +2,6 @@ async function getTasks() {
     let username = localStorage.getItem('username');
     let listid = listID;
 
-    let tasks = [];
-
     try {
         let response = await fetch('/api/tasks', {
             method: 'get',
@@ -14,8 +12,15 @@ async function getTasks() {
             },
         });
 
-        tasks = await response.json();
-        printTasks(tasks);
+        body = await response.json();
+
+        if (response?.status === 200) {
+            tasks = body;
+            printTasks(tasks);
+        } else {
+            alert(body.msg);
+        }
+
     } catch {
         alert("An error occured. Please reload and try again.");
     }
@@ -30,8 +35,6 @@ async function addTask() {
         username: username, listid: listid,
         description: description, date: date, done: false
     }
-
-    let tasks = [];
 
     try {
         let response = await fetch('/api/task', {
@@ -63,8 +66,6 @@ async function updateTask(taskId, taskDoneState) {
     let listid = listID;
     let updateTask = { id: taskId, setDone: newDoneState };
 
-    let tasks = [];
-
     try {
         let response = await fetch('/api/task', {
             method: 'put',
@@ -95,8 +96,6 @@ async function deleteTask(taskId) {
     let listid = listID;
     let deleteTask = { id: taskId };
 
-    let tasks = [];
-
     try {
         let response = await fetch('/api/task', {
             method: 'delete',
@@ -119,6 +118,58 @@ async function deleteTask(taskId) {
 
     } catch {
         alert("An error occured. Please reload and try again.");
+    }
+}
+
+function sortByDate() {
+    let sortedTasks = JSON.parse(JSON.stringify(tasks)); // make DEEP copy of the tasks so we can unsort as well
+    sortedTasks.sort(compareDates);
+
+    if (sortedDate === true) { // check if we are already sorted by date
+        printTasks(tasks); // print the unsorted tasks
+        sortedDate = false; // and now set the sortedDate flag to false
+    } 
+    else { // otherwise we are unsorted
+        printTasks(sortedTasks); // print the sorted tasks
+        sortedDate = true; // set the sortedDate flag to true
+    }
+    if (filteredComplete === true) { // check if we need to refilter
+        filteredComplete = false; // set it to false so it will get set to true in function
+        filterByComplete();
+    }
+}
+
+function filterByComplete() {
+    let filteredTasks = JSON.parse(JSON.stringify(tasks)); // make DEEP copy of the tasks so we can unfilter as well
+    filteredTasks = tasks.filter(checkDone);
+    if (filteredComplete === true) {
+        printTasks(tasks);
+        filteredComplete = false; // sets the filtered status to false
+    }
+    else {
+        printTasks(filteredTasks);
+        filteredComplete = true; // sets the filtered status to true
+    }
+    if (sortedDate == true) { // Re-sorts if necessary after un-filtering
+        sortedDate = false; // will re-sort, so we need to set it to false so when it gets in function it will sort it.
+        sortByDate();
+    }
+}
+
+function compareDates(a, b) {
+    // Helper function for the sortByDate function
+    if (a.date > b.date) {
+        return 1;
+    }
+    else if (a.date < b.date) {
+        return -1;
+    }
+    return 0;
+}
+
+function checkDone(task) {
+    if (task.done === false) {
+        return task;
     }
 }
 
@@ -180,8 +231,14 @@ document.getElementById('currentUser').innerHTML = localStorage.getItem('usernam
 
 
 // print tasks from list on page load
-let currentTasks = getTasks();
-printTasks(currentTasks);
+let tasks = [];
+tasks = getTasks();
+printTasks(tasks);
+
+// initialize sorted and filtered values
+// maybe put these in local storage at some point so they can be persistent?
+var sortedDate = false;
+var filteredComplete = false;
 
 
 // date picker default to day on page load
