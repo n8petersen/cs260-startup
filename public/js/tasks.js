@@ -110,6 +110,9 @@ const listName = urlParams.get('listName')
 // set the page's list name
 document.getElementById('currentListName').innerHTML = listName;
 
+// Print current user on the navbar
+document.getElementById('currentUser').innerHTML = localStorage.getItem('username');
+
 
 // print tasks from list on page load
 let currentTasks = getTasks();

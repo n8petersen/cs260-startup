@@ -177,3 +177,15 @@ input.task-description {
     padding: 20px;
     min-width: 400px;
 }
+
+#currentUser {
+    color: #04d085;
+}
+
+#currentUser:hover {
+    cursor: pointer;
+    background-color: #333333;
+    color: #04d085;
+    /* color: white; */
+    cursor: pointer;
+}

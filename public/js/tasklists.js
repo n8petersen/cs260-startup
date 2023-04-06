@@ -99,6 +99,9 @@ function listToHTML(list) {
 let currentLists = getLists();
 printTaskLists(currentLists);
 
+// Print current user on the navbar
+document.getElementById('currentUser').innerHTML = localStorage.getItem('username');
+
 
 
 // hit login button on "Enter" keypress
