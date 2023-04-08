@@ -56,3 +56,9 @@ This is a simple website that will enable a user to create check lists for any o
 - Most things weren't super hard, as much as time consuming.
 - I decided that the friends implementation was going to take to long to make the deadline, so I had to cut it out for now, but will probably implement it later. It is going to require some database structure updates in order to implement.
 - The websocket, while sort of clunky and silly for my app specifically, wasn't as hard to implement as I thought it would be. I was able to disect the code from simon to apply it to my own website, though I did have to change a LOT of things to get it to work properly. But it is a really cool system that I will definitely be looking for use cases in the future.
+---
+- I had some serious issues getting React to work in my local Dev environment, everytime I would run `npm start` or `npm run start` it would spit out this error saying `Invalid options objet. Dev Server has been initialized using an options object that does not match the API schema. - options.allowedHosts[0] should be a non-empty string`.
+- I scowered the internet looking for resources, I tried updating my nodejs and npm versions, I tried updating my npm packages, I tried removing unecessary ones, all to no avail.
+- The one fix I found on a random stackoverflow halfway down through the answers suggested I add the following env variable; `DANGEROUSLY_DISABLE_HOST_CHECK=true`. I tried that and it worked.
+- It has to do with the proxy we were using to connect to the back-end service, which is only an issue in Dev, not in Prod. So after I finished debugging my program locally, I deployed it and it worked fine without that issue.
+- What I learned is, Dev environments are weird and finnicky. Not sure what else to say.
